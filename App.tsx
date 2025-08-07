@@ -1,20 +1,140 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput,Button, Image} from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    <Text> Hello world, I can code all phones now.</Text>
+<View>
+    <Image source ={require('./Activity/assets/welcome_to_react.png')}/>
+</View>
+
+    <Text style ={styles.welcomeText}>Welcome your react App!</Text>
+
+    <Text style ={{fontSize:23}}>Enter Name:</Text>
+    <TextInput placeholder ="First Name"/>
+    <Text style ={{fontSize:23}}>Enter Surname:</Text>
+    <TextInput placeholder="Surname"></TextInput>
+<Button title ="Add user"></Button>
+
     </View>
+    
   );
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  welcomeText:{
+    backgroundColor:'black',
+    paddingTop: 40,
+    color:'purple',
+    fontWeight:'bold',
+    fontSize: 38,
+    textAlign: 'center',
+  }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
