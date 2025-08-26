@@ -12,13 +12,11 @@ return(
 <Stack.Screen name ="Home" component={MainScreen}/>
 <Stack.Screen name ="ViewDetails" component={ViewDetails}/>
 </Stack.Navigator>
- </NavigationContainer>
-
+</NavigationContainer>
 );
 };
-
-
-function MainScreen({navigation})
+/*any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file*/
+function MainScreen({navigation}:any)
  {
 
   const[Name, setName] = useState('');
@@ -32,6 +30,7 @@ function MainScreen({navigation})
     <Image style ={styles.ImageSize}
     source ={require('./img/welcome_to_react.png')}/>
 </View>
+
     <Text style ={styles.welcomeText}>Welcome my react App!</Text>
 
     <View style={styles.InputFlex}>
@@ -42,30 +41,38 @@ function MainScreen({navigation})
 
      />
 
-    </View>
+</View>
     <Text style = {styles.HeadingText}>Enter Surname:</Text>
-    <TextInput style= {styles.InputBoxs} placeholder="Surname"></TextInput>
-
-
-     
+    <TextInput style= {styles.InputBoxs}
+     placeholder="Surname"
+    onChangeText = {newText => setSurname(newText)}
+   />
   
 <Button title ="Add user"
  onPress ={()=>{
-  navigation.navigate('ViewDetails');
+  /*This is the code that send data to another screen*/
+  navigation.navigate('ViewDetails', {NameSend : Name, 
+    SurnameSend: Surname});
   console.log("The user name is:" +Name +"Surname: " + Surname)
+
  }}/>
-
     </View>
-
   );
 }
 
-function ViewDetails() {
-  return(
-    <View style ={{flex:1, alignItems:'center', justifyContent:'center'}}>
-      <Text>Name: ### Surname:####</Text>
-    </View>
+/*route passes the information, the information cannot pass without variable rout*/
+/*any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file*/
+function ViewDetails({navigation, route} :any) {
 
+  const NameGet = route.params.NameSend;
+  const SurnameGet = route.params.SurnameSend
+
+  /*return have everything that appears on the scree, everything that is not going to appear on the screen is outside return*/
+  return(
+    <View style ={{flex:1, alignItems:'center', backgroundColor:'blue', justifyContent:'center'}}>
+      <Text style={{fontSize:34, color:'white'}}>
+        Name:{NameGet} Surname:  {SurnameGet}</Text>
+    </View>
   );
 };
 const styles = StyleSheet.create({
