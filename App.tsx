@@ -15,7 +15,7 @@ return(
 </NavigationContainer>
 );
 };
-/*any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file*/
+//any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file
 function MainScreen({navigation}:any)
  {
 
@@ -23,6 +23,7 @@ function MainScreen({navigation}:any)
   const[Surname, setSurname] = useState('');
 
   console.log("App starting up now.")
+  //Outside return you use this for commenting
   return (
    
     <View>
@@ -38,7 +39,6 @@ function MainScreen({navigation}:any)
     <TextInput style ={styles.InputBoxs}
      placeholder ="First Name"
      onChangeText = {newText => setName(newText)}
-
      />
 
 </View>
@@ -50,7 +50,7 @@ function MainScreen({navigation}:any)
   
 <Button title ="Add user"
  onPress ={()=>{
-  /*This is the code that send data to another screen*/
+  /*(inside return you use this comment)This is the code that send data to another screen*/
   navigation.navigate('ViewDetails', {NameSend : Name, 
     SurnameSend: Surname});
   console.log("The user name is:" +Name +"Surname: " + Surname)
