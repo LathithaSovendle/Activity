@@ -43,11 +43,14 @@ return(
 );
 };
 
+
 //any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file
 function MainScreen({navigation}:any)
  {
   const[Name, setName] = useState('');
   const[Surname, setSurname] = useState('');
+  //we want to decalre our if statements
+  const [Error, setError] = useState('');
 
   console.log("App starting up now.")
   //Outside return you use this for commenting
@@ -60,9 +63,11 @@ function MainScreen({navigation}:any)
     source ={require('./img/welcome_to_react.png')}/>
 </View>
 <FadeInView>
+
     <Text style ={styles.welcomeText}>Welcome my react App!</Text>
 
     <View style={styles.InputFlex}>
+
     <Text style ={styles.HeadingText}>Enter Name:</Text>
     <TextInput style ={styles.InputBoxs}
      placeholder ="First Name"
@@ -77,9 +82,9 @@ function MainScreen({navigation}:any)
 <Button title ="Add user"
  onPress ={()=>{
   /*(inside return you use this comment)This is the code that send data to another screen*/
-  navigation.navigate('ViewDetails', {NameSend : Name, 
-    SurnameSend: Surname});
+  navigation.navigate('ViewDetails', {NameSend : Name, SurnameSend: Surname});
   console.log("The user name is:" +Name +"Surname: " + Surname)
+  //if it is empty doesn't mean it is empty, if it is not empty means it is empty
  }}/>
  </FadeInView>
  </ScrollView>
@@ -110,7 +115,7 @@ const styles = StyleSheet.create({
     color:'blue',
     fontWeight:'bold',
     fontSize: 48,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   ImageSize: {
     width: 350,
@@ -120,23 +125,31 @@ maiPicture:{
 paddingTop: 40,
 backgroundColor:'#E3ECED',
 justifyContent:'center', 
-alignItems: 'center',
+alignItems: 'center'
 
 },
 InputFlex:{
   backgroundColor:'#D2E5E9',
  
   flexDirection:'row',
-  marginTop:30,
+  marginTop:30
 
 },
 InputBoxs: {
   backgroundColor:'#D2E5E9',
-  fontSize: 23,
+  fontSize: 23
+  
 },
 
 HeadingText: {
 fontSize:32
+
+},
+red:{
+color:'red',
+fontWeight:'bold',
+fontSize:26,
+textAlign: 'center'
 }
 });
 
