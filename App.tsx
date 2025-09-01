@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   // acroll view is inside the safe area view
 return(
  <NavigationContainer>
@@ -30,6 +31,7 @@ const FadeInView = (props:any) => {
     }
   ).start();
 },[fadeAnim]);
+
 //return means everything inside this, will appear on the screen
 return(
   <Animated.View
@@ -42,11 +44,23 @@ return(
 </Animated.View>
 );
 };
-
+//isEmpy function
+//any to get rid of a red line
+function isEmpty(value : any) {
+  return(
+    //null or undefined
+    (value == null) ||
+    //has length and its's zero
+    (value.hasOwnProperty('length') && value.length === 0) ||
+    //is an object and has no keys
+    (value.constructor === Object && Object.keys(value).length === 0)
+  )
+};
 
 //any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file
 function MainScreen({navigation}:any)
  {
+
   const[Name, setName] = useState('');
   const[Surname, setSurname] = useState('');
   //we want to decalre our if statements
@@ -62,10 +76,11 @@ function MainScreen({navigation}:any)
     <Image style ={styles.ImageSize}
     source ={require('./img/welcome_to_react.png')}/>
 </View>
-<FadeInView>
-
     <Text style ={styles.welcomeText}>Welcome my react App!</Text>
-
+    <FadeInView>
+      <Text style = {styles.red}>
+        {Error}
+      </Text>
     <View style={styles.InputFlex}>
 
     <Text style ={styles.HeadingText}>Enter Name:</Text>
@@ -81,17 +96,32 @@ function MainScreen({navigation}:any)
    />
 <Button title ="Add user"
  onPress ={()=>{
+  if ((isEmpty(Name) == false) && (isEmpty(Surname)==false))
+  {
+    navigation.navigate('ViewDetails', {
+      NameSend : Name,
+      SurnameSend : Surname });
+      console.log("Name: " + Name +
+                  "Surname: " + Surname);
+                  setError("");
+  }
+else
+{
+  setError("Please add all the field");
+}
   /*(inside return you use this comment)This is the code that send data to another screen*/
   navigation.navigate('ViewDetails', {NameSend : Name, SurnameSend: Surname});
   console.log("The user name is:" +Name +"Surname: " + Surname)
   //if it is empty doesn't mean it is empty, if it is not empty means it is empty
  }}/>
+ z
  </FadeInView>
  </ScrollView>
  </SafeAreaView>
     </View>
   );
 }
+
 /*route passes the information, the information cannot pass without variable route*/
 /*any means i dont want to see a red line, because the navigation is javascript, and we work on typescript file*/
 function ViewDetails({navigation, route} :any) {
