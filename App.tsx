@@ -132,7 +132,7 @@ function ViewDetails({navigation, route} :any) {
       <View style = {{ flex: 0, alignItems: 'center', justifyContent: 'center'}}>
       <Text style={{fontSize:34, fontWeight:"bold", color:'blue'}}>Welcome {NameGet} {SurnameGet}
         </Text> 
-        <Text> Please select what is your favourite programming language:</Text>  
+        <Text style = {{fontSize: 24, color: 'green'}}> Please select what is your favourite programming language:</Text>  
         <Button title= "Process"
         onPress={() => {
           
